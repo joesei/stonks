@@ -23,10 +23,37 @@
  */
 package uwu.stonks;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Scanner;
+
 public class Main {
 
-    public static void main(String[] args) {
-    
+    public static void main(String[] args){
+        
+        boolean testing = true;
+        if(testing) {
+            String path = System.getProperty("user.dir") + "\\csv\\gpro.csv";
+        } else {
+            Scanner scan = new Scanner(System.in);
+            String fileName, path;
+            System.out.println("Enter name of csv file to analyze");
+            fileName = scan.nextLine();
+            path = System.getProperty("user.dir");
+            try {
+                File file = new File(path + "\\csv\\" + fileName);
+                BufferedReader br = new BufferedReader(new FileReader(file));
+                //String st = br.readLine();
+                //while((st = br.readLine()) != null) { 
+                //    System.out.println(st);
+                //}
+                //br.close();
+            } catch(IOException | NumberFormatException ex) {
+                ex.printStackTrace();
+            } 
+        }
     }
     
 }
