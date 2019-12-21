@@ -23,16 +23,6 @@
  */
 package uwu.stonks;
 
-import java.util.ArrayList;
-
-public class Stonck {
+public class Percentz {
     
-    final String path;
-    ArrayList<Entry> entrys;
-    ArrayList<Predicatez> predicatez;
-    ArrayList<Percentz> percentz;
-    
-    public Stonck(String path) {
-        this.path = path;
-    }
 }
