@@ -23,6 +23,54 @@
  */
 package uwu.stonks;
 
+import java.util.ArrayList;
+
 public class Predicatez {
+    
+    //true == higher 
+    //false == lower 
+    boolean sameDayGain;
+    boolean prevDayClose;
+    boolean prevDayOpen;
+    boolean prevDayVolume;
+    boolean prevDayHigh;
+    boolean prevDayLow;
+    
+    public Predicatez() {
+        
+    }
+    
+    //Setters-------------------------------------------------------------------
+    public void setSameDayGain(Entry same) {
+        this.sameDayGain = (same.getClose() > same.getOpen());
+    }
+    
+    public void setPrevDayClose(Entry same, Entry prev) {
+        this.prevDayClose = (same.getClose() > prev.getClose());
+    }
+    
+    public void setPrevDayOpen(Entry same, Entry prev) {
+        this.prevDayOpen = (same.getOpen() > prev.getOpen());
+    }
+    
+    public void setPrevDayVolume(Entry same, Entry prev) {
+        this.prevDayVolume = (same.getVolume() > prev.getVolume());
+    }
+    
+    public void setPrevDayHigh(Entry same, Entry prev) {
+        this.prevDayHigh = (same.getHigh() > prev.getHigh());
+    }
+    
+    public void setPrevDayLow(Entry same, Entry prev) {
+        this.prevDayLow = (same.getLow() > prev.getLow());
+    }
+    
+    public static ArrayList<Predicatez> setEntryPredicatez(ArrayList<Entry> list) {
+        ArrayList<Predicatez> ret = new ArrayList<>();
+        
+  
+        return ret;
+        
+    }
     
 }
