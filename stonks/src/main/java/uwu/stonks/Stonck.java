@@ -24,6 +24,7 @@
 package uwu.stonks;
 
 import java.util.ArrayList;
+import uwu.stonks.Predicatez.Predz;
 
 public class Stonck {
     
@@ -37,5 +38,6 @@ public class Stonck {
         this.entrys = Entry.getEntryList(fileName);
         this.predicatez = Predicatez.setEntryPredicatez(this.entrys);
         this.percentz = Percentz.setEntryPercentz(this.entrys);
+        
     }
 }

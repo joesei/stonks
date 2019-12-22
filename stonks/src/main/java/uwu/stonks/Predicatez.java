@@ -36,6 +36,10 @@ public class Predicatez {
     boolean prevDayHigh;
     boolean prevDayLow;
     
+    public enum Predz {
+        SDG, PDC, PDO, PDV, PDH, PDL;
+    }
+    
     public Predicatez() {
     }
     
@@ -103,6 +107,50 @@ public class Predicatez {
             same.getEntryPred().setPrevDayHigh(same, prev);
             same.getEntryPred().setPrevDayLow(same, prev);
             ret.add(same.getEntryPred());
+        }
+        return ret;
+    }
+    
+    //Create a list of predicatez with a certain Pred that has boolean value b
+    public static ArrayList<Predicatez> createListByPred(ArrayList<Predicatez> list, 
+            Predz type, boolean b) {
+        
+        ArrayList<Predicatez> ret = new ArrayList<>();
+        for(Predicatez p : list) {
+            switch(type) {
+                case SDG:
+                    if(p.getSameDayGain() == b) {
+                        ret.add(p);
+                    }
+                    break;
+                case PDC:
+                    if(p.getPrevDayClose() == b) {
+                        ret.add(p);
+                    }
+                    break;
+                case PDO:
+                    if(p.getPrevDayOpen() == b) {
+                        ret.add(p);
+                    }
+                    break;
+                case PDV:
+                    if(p.getPrevDayVolume() == b) {
+                        ret.add(p);
+                    }
+                    break;
+                case PDH:
+                    if(p.getPrevDayHigh() == b) {
+                        ret.add(p);
+                    }
+                    break;
+                case PDL:
+                    if(p.getPrevDayLow() == b) {
+                        ret.add(p);
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
         return ret;
     }
