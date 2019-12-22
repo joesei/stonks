@@ -77,7 +77,7 @@ public class Entry {
         return this.close;
     }
     
-    public Predicatez getPred() {
+    public Predicatez getEntryPred() {
         return this.predicatez;
     }
     

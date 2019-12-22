@@ -37,7 +37,6 @@ public class Predicatez {
     boolean prevDayLow;
     
     public Predicatez() {
-        
     }
     
     //Setters-------------------------------------------------------------------
@@ -65,12 +64,47 @@ public class Predicatez {
         this.prevDayLow = (same.getLow() > prev.getLow());
     }
     
+    //Getters-------------------------------------------------------------------
+    public boolean getSameDayGain() {
+        return this.sameDayGain;
+    }
+    
+    public boolean getPrevDayClose() {
+        return this.prevDayClose;
+    }
+    
+    public boolean getPrevDayOpen() {
+        return this.prevDayOpen;
+    }
+    
+    public boolean getPrevDayVolume() {
+        return this.prevDayVolume;
+    }
+    
+    public boolean getPrevDayHigh() {
+        return this.prevDayHigh;
+    }
+    
+    public boolean getPrevDayLow() {
+        return this.prevDayLow;
+    }
+    
+    //Set predicatez for each entry and return arraylist of pure predicatez
     public static ArrayList<Predicatez> setEntryPredicatez(ArrayList<Entry> list) {
         ArrayList<Predicatez> ret = new ArrayList<>();
-        
-  
+        Entry same, prev;    
+        for(int i = 1; i < (list.size() - 1); i++) {
+            same = list.get(i);
+            prev = list.get(i - 1);
+            same.getEntryPred().setSameDayGain(same);
+            same.getEntryPred().setPrevDayClose(same, prev);
+            same.getEntryPred().setPrevDayOpen(same, prev);
+            same.getEntryPred().setPrevDayVolume(same, prev);
+            same.getEntryPred().setPrevDayHigh(same, prev);
+            same.getEntryPred().setPrevDayLow(same, prev);
+            ret.add(same.getEntryPred());
+        }
         return ret;
-        
     }
     
 }

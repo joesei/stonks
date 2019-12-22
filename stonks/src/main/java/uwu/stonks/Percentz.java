@@ -25,4 +25,64 @@ package uwu.stonks;
 
 public class Percentz {
     
+    float sameDayGain;
+    float prevDayClose;
+    float prevDayOpen;
+    float prevDayVolume;
+    float prevDayHigh;
+    float prevDayLow;
+    
+    public Percentz() {
+    }
+    
+    //Setters-------------------------------------------------------------------
+    public void setSameDayGain(Entry same) {
+        this.sameDayGain = ((same.getClose() - same.getOpen()) / same.getClose()) * 100;
+    }
+    
+    public void setPrevDayClose(Entry same, Entry prev) {
+        this.prevDayClose = ((same.getClose() - prev.getClose()) / prev.getClose()) * 100;
+    }
+    
+    public void setPrevDayOpen(Entry same, Entry prev) {
+        this.prevDayOpen = ((same.getOpen() - prev.getOpen()) / prev.getOpen()) * 100;
+    }
+    
+    public void setPrevDayVolume(Entry same, Entry prev) {
+        this.prevDayVolume = ((same.getVolume() - prev.getVolume()) / prev.getVolume()) * 100;
+    }
+    
+    public void setPrevDayHigh(Entry same, Entry prev) {
+        this.prevDayHigh = ((same.getHigh() - prev.getHigh()) / prev.getHigh()) * 100;
+    }
+    
+    public void setPrevDayLow(Entry same, Entry prev) {
+        this.prevDayLow = ((same.getLow() - prev.getLow()) / prev.getLow()) * 100;
+    }
+    
+    //Getters-------------------------------------------------------------------
+    public float getSameDayGain() {
+        return this.sameDayGain;
+    }
+    
+    public float getPrevDayClose() {
+        return this.prevDayClose;
+    }
+    
+    public float getPrevDayOpen() {
+        return this.prevDayOpen;
+    }
+    
+    public float getPrevDayVolume() {
+        return this.prevDayVolume;
+    }
+    
+    public float getPrevDayHigh() {
+        return this.prevDayHigh;
+    }
+    
+    public float getPrevDayLow() {
+        return this.prevDayLow;
+    }
+    
 }
