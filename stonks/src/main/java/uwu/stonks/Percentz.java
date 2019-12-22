@@ -23,6 +23,8 @@
  */
 package uwu.stonks;
 
+import java.util.ArrayList;
+
 public class Percentz {
     
     float sameDayGain;
@@ -85,4 +87,21 @@ public class Percentz {
         return this.prevDayLow;
     }
     
+    //Set predicatez for each entry and return arraylist of pure predicatez
+    public static ArrayList<Percentz> setEntryPercentz(ArrayList<Entry> list) {
+        ArrayList<Percentz> ret = new ArrayList<>();
+        Entry same, prev;    
+        for(int i = 1; i < (list.size() - 1); i++) {
+            same = list.get(i);
+            prev = list.get(i - 1);
+            same.getEntryPerc().setSameDayGain(same);
+            same.getEntryPerc().setPrevDayClose(same, prev);
+            same.getEntryPerc().setPrevDayOpen(same, prev);
+            same.getEntryPerc().setPrevDayVolume(same, prev);
+            same.getEntryPerc().setPrevDayHigh(same, prev);
+            same.getEntryPerc().setPrevDayLow(same, prev);
+            ret.add(same.getEntryPerc());
+        }
+        return ret;
+    }
 }

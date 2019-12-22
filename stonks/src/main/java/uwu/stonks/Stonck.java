@@ -36,5 +36,6 @@ public class Stonck {
         this.fileName = fileName;
         this.entrys = Entry.getEntryList(fileName);
         this.predicatez = Predicatez.setEntryPredicatez(this.entrys);
+        this.percentz = Percentz.setEntryPercentz(this.entrys);
     }
 }

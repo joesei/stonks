@@ -81,11 +81,15 @@ public class Entry {
         return this.predicatez;
     }
     
+    public Percentz getEntryPerc() {
+        return this.percentz;
+    }
+    
     //--------------------------------------------------------------------------
     
     public static ArrayList<Entry> getEntryList(String fileName) {
         String path = System.getProperty("user.dir") + "\\csv\\" + fileName;
-        ArrayList<Entry> datalist = new ArrayList<>(); 
+        ArrayList<Entry> entryList = new ArrayList<>(); 
         try {
             File file = new File(path);
             BufferedReader br = new BufferedReader(new FileReader(file));
@@ -100,11 +104,11 @@ public class Entry {
                 float l = Float.valueOf(temp.get(3));
                 float c = Float.valueOf(temp.get(4));
                 int v = Integer.valueOf(temp.get(6));
-                datalist.add(new Entry(d, v, o, h, l, c));
+                entryList.add(new Entry(d, v, o, h, l, c));
             }
         } catch(IOException | NumberFormatException ex) {
             ex.printStackTrace();
         }
-        return datalist;
+        return entryList;
     }
 }
