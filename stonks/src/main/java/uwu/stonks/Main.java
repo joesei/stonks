@@ -36,6 +36,15 @@ public class Main {
         boolean testing = true;
         if(testing) {
             String path = System.getProperty("user.dir") + "\\csv\\gpro.csv";
+            
+            
+            
+            
+            
+            
+            
+            
+            
         } else {
             Scanner scan = new Scanner(System.in);
             String fileName, path;

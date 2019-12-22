@@ -23,6 +23,88 @@
  */
 package uwu.stonks;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Entry {
     
+    final String date;
+    final int volume;
+    final float open, high, low, close;
+    Predicatez predicatez;
+    Percentz percentz;
+        
+    public Entry(String date, int volume, float open, float high, float low, 
+            float close) {
+        
+        this.date = date;
+        this.volume = volume;
+        this.open = open;
+        this.high = high;
+        this.low = low;
+        this.close = close;
+        this.predicatez = new Predicatez();
+        this.percentz = new Percentz();
+    }
+    
+    //Getters----------------------------------------------------------
+    public String getDate() {
+        return this.date;
+    }
+    
+    public int getVolume() {
+        return this.volume;
+    }
+    
+    public float getOpen() {
+        return this.open;
+    }
+    
+    public float getHigh() {
+        return this.high;
+    }
+    
+    public float getLow() {
+        return this.low;
+    }
+    
+    public float getClose() {
+        return this.close;
+    }
+    
+    public Predicatez getPred() {
+        return this.predicatez;
+    }
+    
+    //--------------------------------------------------------------------------
+    
+    public static ArrayList<Entry> getEntryList(String fileName) {
+        String path = System.getProperty("user.dir") + "\\csv\\" + fileName;
+        ArrayList<Entry> datalist = new ArrayList<>(); 
+        try {
+            File file = new File(path);
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            //Get first line out of way
+            String s = br.readLine();
+            List<String> temp;
+            while((s = br.readLine()) != null) {
+                temp = Arrays.asList(s.split(","));
+                String d = temp.get(0);
+                float o = Float.valueOf(temp.get(1));
+                float h = Float.valueOf(temp.get(2));
+                float l = Float.valueOf(temp.get(3));
+                float c = Float.valueOf(temp.get(4));
+                int v = Integer.valueOf(temp.get(6));
+                datalist.add(new Entry(d, v, o, h, l, c));
+            }
+        } catch(IOException | NumberFormatException ex) {
+            ex.printStackTrace();
+        }
+        return datalist;
+    }
 }

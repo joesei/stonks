@@ -27,12 +27,13 @@ import java.util.ArrayList;
 
 public class Stonck {
     
-    final String path;
+    final String fileName;
     ArrayList<Entry> entrys;
     ArrayList<Predicatez> predicatez;
     ArrayList<Percentz> percentz;
     
-    public Stonck(String path) {
-        this.path = path;
+    public Stonck(String fileName) {
+        this.fileName = fileName;
+        this.entrys = Entry.getEntryList(fileName);
     }
 }
