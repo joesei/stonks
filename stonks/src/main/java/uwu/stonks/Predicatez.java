@@ -24,6 +24,7 @@
 package uwu.stonks;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Predicatez {
     
@@ -153,6 +154,60 @@ public class Predicatez {
             }
         }
         return ret;
+    }
+    
+    //List order: SDG, PDC, PDO, PDV, PDH, PDL
+    public static ArrayList<Integer> countPred(Predicatez p, boolean b) {
+        ArrayList<Integer> ret = new ArrayList<>();
+        boolean temp;
+        
+        temp = (p.getSameDayGain() == b) ? ret.add(1) : ret.add(0);
+        temp = (p.getPrevDayClose() == b) ? ret.add(1) : ret.add(0);
+        temp = (p.getPrevDayOpen() == b) ? ret.add(1) : ret.add(0);
+        temp = (p.getPrevDayVolume() == b) ? ret.add(1) : ret.add(0);
+        temp = (p.getPrevDayHigh() == b) ? ret.add(1) : ret.add(0);
+        temp = (p.getPrevDayLow() == b) ? ret.add(1) : ret.add(0);
+        
+        return ret;
+    }
+    
+    public ArrayList<Integer> countPred(boolean b) {
+        ArrayList<Integer> ret = new ArrayList<>();
+        boolean temp;
+        
+        temp = (this.getSameDayGain() == b) ? ret.add(1) : ret.add(0);
+        temp = (this.getPrevDayClose() == b) ? ret.add(1) : ret.add(0);
+        temp = (this.getPrevDayOpen() == b) ? ret.add(1) : ret.add(0);
+        temp = (this.getPrevDayVolume() == b) ? ret.add(1) : ret.add(0);
+        temp = (this.getPrevDayHigh() == b) ? ret.add(1) : ret.add(0);
+        temp = (this.getPrevDayLow() == b) ? ret.add(1) : ret.add(0);
+        
+        return ret;
+    }
+    
+    public static ArrayList<Integer> countPredz(ArrayList<Predicatez> list, 
+            boolean b) {
+        
+        ArrayList<Integer> ret = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0));
+        //ArrayList<Integer> temp = new ArrayList<>();
+        for(Predicatez p : list) {
+            //temp = p.countPred(b);
+            addToList(ret, p.countPred(b));
+        }
+        
+        return ret;
+    }
+    
+    public static void addToList(ArrayList<Integer> total, 
+            ArrayList<Integer> temp) {
+        
+        for(int i = 0; i < (total.size() - 1); i++) {
+            //Add new value
+            total.add(i, total.get(i) + temp.get(i));
+            //Remove old value
+            total.remove(i + 1);
+        }
+        
     }
     
 }
