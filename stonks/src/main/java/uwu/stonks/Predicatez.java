@@ -113,6 +113,7 @@ public class Predicatez {
     }
     
     //Create a list of predicatez with a certain Pred that has boolean value b
+    //TODO: Method that accepts multiple Predz types
     public static ArrayList<Predicatez> createListByPred(ArrayList<Predicatez> list, 
             Predz type, boolean b) {
         
@@ -193,11 +194,11 @@ public class Predicatez {
         for(Predicatez p : list) {
             //temp = p.countPred(b);
             addToList(ret, p.countPred(b));
-        }
-        
+        }   
         return ret;
     }
     
+    //Add to list to get total results of count methods
     public static void addToList(ArrayList<Integer> total, 
             ArrayList<Integer> temp) {
         
@@ -206,8 +207,15 @@ public class Predicatez {
             total.add(i, total.get(i) + temp.get(i));
             //Remove old value
             total.remove(i + 1);
-        }
-        
+        }   
     }
     
+    //Print results from count methods
+    public static void printPredNum(ArrayList<Integer> list) {
+        String s = String.format("SDG: %d, PDC: %d, PDO: %d, PDV: %d, PDH: %d,"
+                + " PDL: %d", list.get(0), list.get(1), list.get(2),
+                list.get(3), list.get(4), list.get(5));
+        
+        System.out.println(s);
+    }
 }
