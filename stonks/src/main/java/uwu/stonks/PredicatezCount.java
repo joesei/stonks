@@ -23,8 +23,6 @@
  */
 package uwu.stonks;
 
-import java.util.ArrayList;
-
 public class PredicatezCount {
     boolean countType;
     int SDG = 0;

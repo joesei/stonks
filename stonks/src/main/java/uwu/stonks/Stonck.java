@@ -48,13 +48,14 @@ public class Stonck {
     Used to test features
     */
     public void test() {
+        //Prints all predicatez
         printPredz();
-        
+        //Predz and bools are parameters to create an entry list
         ArrayList<Predz> predz = new ArrayList<>(Arrays.asList(Predz.SDG, Predz.PDH));
         ArrayList<Boolean> bools = new ArrayList<>(Arrays.asList(true, true));
         ArrayList<Entry> elist = getEntrysByPredz(predz, bools);
         printPredzFromEntrys(elist);
-        
+        //Count predicatez by boolean
         PredicatezCount count = Predicatez.countPredicatez(elist, true);
         count.printCount(); 
         
