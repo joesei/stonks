@@ -93,68 +93,14 @@ public class Predicatez {
     public boolean getPrevDayLow() {
         return this.prevDayLow;
     }
-    
-    //Set predicatez for each entry and return arraylist of pure predicatez
-    public static ArrayList<Predicatez> setEntryPredicatez(ArrayList<Entry> list) {
-        ArrayList<Predicatez> ret = new ArrayList<>();
-        Entry same, prev;    
-        for(int i = 1; i < (list.size() - 1); i++) {
-            same = list.get(i);
-            prev = list.get(i - 1);
-            same.getEntryPred().setSameDayGain(same);
-            same.getEntryPred().setPrevDayClose(same, prev);
-            same.getEntryPred().setPrevDayOpen(same, prev);
-            same.getEntryPred().setPrevDayVolume(same, prev);
-            same.getEntryPred().setPrevDayHigh(same, prev);
-            same.getEntryPred().setPrevDayLow(same, prev);
-            ret.add(same.getEntryPred());
-        }
-        return ret;
-    }
-    
-    //Create a list of predicatez with a certain Pred that has boolean value b
-    //TODO: Method that accepts multiple Predz types
-    public static ArrayList<Predicatez> createListByPred(ArrayList<Predicatez> list, 
-            Predz type, boolean b) {
+    //--------------------------------------------------------------------------
+    public void printPredicate() {
+        String s = String.format("SDG: %s, PDC: %s, PDO: %s, PDV: %s, PDH: %s,"
+                + " PDL: %s", this.sameDayGain, this.prevDayClose, 
+                this.prevDayOpen, this.prevDayVolume, this.prevDayHigh, 
+                this.prevDayLow);
         
-        ArrayList<Predicatez> ret = new ArrayList<>();
-        for(Predicatez p : list) {
-            switch(type) {
-                case SDG:
-                    if(p.getSameDayGain() == b) {
-                        ret.add(p);
-                    }
-                    break;
-                case PDC:
-                    if(p.getPrevDayClose() == b) {
-                        ret.add(p);
-                    }
-                    break;
-                case PDO:
-                    if(p.getPrevDayOpen() == b) {
-                        ret.add(p);
-                    }
-                    break;
-                case PDV:
-                    if(p.getPrevDayVolume() == b) {
-                        ret.add(p);
-                    }
-                    break;
-                case PDH:
-                    if(p.getPrevDayHigh() == b) {
-                        ret.add(p);
-                    }
-                    break;
-                case PDL:
-                    if(p.getPrevDayLow() == b) {
-                        ret.add(p);
-                    }
-                    break;
-                default:
-                    break;
-            }
-        }
-        return ret;
+        System.out.println(s);
     }
     
     //List order: SDG, PDC, PDO, PDV, PDH, PDL

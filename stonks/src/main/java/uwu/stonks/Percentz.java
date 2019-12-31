@@ -87,6 +87,7 @@ public class Percentz {
         return this.prevDayLow;
     }
     
+    /*
     //Set predicatez for each entry and return arraylist of pure predicatez
     public static ArrayList<Percentz> setEntryPercentz(ArrayList<Entry> list) {
         ArrayList<Percentz> ret = new ArrayList<>();
@@ -104,4 +105,5 @@ public class Percentz {
         }
         return ret;
     }
+    */
 }

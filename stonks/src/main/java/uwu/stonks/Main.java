@@ -27,6 +27,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -35,10 +36,9 @@ public class Main {
         
         boolean testing = true;
         if(testing) {
-            String path = System.getProperty("user.dir") + "\\csv\\gpro.csv";
-            
-            
-            
+            String path = "gpro.csv";
+            Stonck st = new Stonck(path);
+            st.test();
             
             
             

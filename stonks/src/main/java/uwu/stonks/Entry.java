@@ -86,12 +86,14 @@ public class Entry {
     }
     
     //--------------------------------------------------------------------------
-    
+    /*
+    Get the values stored in a csv file found in the csv folder
+    */
     public static ArrayList<Entry> getEntryList(String fileName) {
         String path = System.getProperty("user.dir") + "\\csv\\" + fileName;
         ArrayList<Entry> entryList = new ArrayList<>(); 
+        File file = new File(path);
         try {
-            File file = new File(path);
             BufferedReader br = new BufferedReader(new FileReader(file));
             //Get first line out of way
             String s = br.readLine();
@@ -106,8 +108,10 @@ public class Entry {
                 int v = Integer.valueOf(temp.get(6));
                 entryList.add(new Entry(d, v, o, h, l, c));
             }
+            br.close();
         } catch(IOException | NumberFormatException ex) {
-            ex.printStackTrace();
+        } finally {
+            System.out.println("CSV file succesfully read");
         }
         return entryList;
     }
