@@ -48,25 +48,44 @@ public class Stonck {
     */
     public void test() {
         printPredz();
+        
         ArrayList<Predz> predz = new ArrayList<>(Arrays.asList(Predz.SDG, Predz.PDH));
         ArrayList<Boolean> bools = new ArrayList<>(Arrays.asList(true, true));
-        printPredz(getPredicatezByValue(predz, bools));
+        ArrayList<Entry> elist = getEntrysByPredz(predz, bools);
+        printPredzFromEntrys(elist);
+        
+        PredicatezCount count = Predicatez.countPredicatez(elist, true);
+        count.printCount(); 
+        
+        //printPredz(plist);
+        
     }
     
+    //Print methods-------------------------------------------------------------
     public void printPredz() {
         System.out.println("Printing predicatez");
         for(Entry e : this.getEntrys()) {
             e.getEntryPred().printPredicate();
         }
     }
-    
+
     public void printPredz(ArrayList<Predicatez> list) {
         System.out.println("Printing predicatez");
         for(Predicatez p : list) {
             p.printPredicate();
         }
+        
     }
     
+    public void printPredzFromEntrys(ArrayList<Entry> list) {
+        System.out.println("Printing predicatez");
+        Predicatez p;
+        for(Entry e : list) {
+            p = e.getEntryPred();
+            p.printPredicate();
+        }
+    }
+    //--------------------------------------------------------------------------
     /*
     Initialize values of predicatez/percentz for all entries in stonck
     */
@@ -111,7 +130,6 @@ public class Stonck {
         for(Entry e : this.entrys) {
             p = e.getEntryPred();
             //Check whether all predz/boolean pairs are present
-            
             boolean b;
             if(predz.size() == 1) {
                 b = bools.get(0);
@@ -158,7 +176,6 @@ public class Stonck {
                     }
                     b = bools.get(i);
                     switch(predz.get(i)) {
-                        
                         case SDG:
                             if(p.getSameDayGain() == b) {
                                 count++;
@@ -190,7 +207,6 @@ public class Stonck {
                             }
                             break;
                         default:
-                            //check = false;
                             break;
                     }    
                 }
@@ -217,7 +233,6 @@ public class Stonck {
         for(Entry e : this.entrys) {
             p = e.getEntryPred();
             //Check whether all predz/boolean pairs are present
-            
             boolean b;
             if(predz.size() == 1) {
                 b = bools.get(0);
@@ -264,7 +279,6 @@ public class Stonck {
                     }
                     b = bools.get(i);
                     switch(predz.get(i)) {
-                        
                         case SDG:
                             if(p.getSameDayGain() == b) {
                                 count++;
@@ -296,7 +310,6 @@ public class Stonck {
                             }
                             break;
                         default:
-                            //check = false;
                             break;
                     }    
                 }

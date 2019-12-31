@@ -103,65 +103,33 @@ public class Predicatez {
         System.out.println(s);
     }
     
-    //List order: SDG, PDC, PDO, PDV, PDH, PDL
-    public static ArrayList<Integer> countPred(Predicatez p, boolean b) {
-        ArrayList<Integer> ret = new ArrayList<>();
-        boolean temp;
-        
-        temp = (p.getSameDayGain() == b) ? ret.add(1) : ret.add(0);
-        temp = (p.getPrevDayClose() == b) ? ret.add(1) : ret.add(0);
-        temp = (p.getPrevDayOpen() == b) ? ret.add(1) : ret.add(0);
-        temp = (p.getPrevDayVolume() == b) ? ret.add(1) : ret.add(0);
-        temp = (p.getPrevDayHigh() == b) ? ret.add(1) : ret.add(0);
-        temp = (p.getPrevDayLow() == b) ? ret.add(1) : ret.add(0);
-        
-        return ret;
-    }
-    
-    public ArrayList<Integer> countPred(boolean b) {
-        ArrayList<Integer> ret = new ArrayList<>();
-        boolean temp;
-        
-        temp = (this.getSameDayGain() == b) ? ret.add(1) : ret.add(0);
-        temp = (this.getPrevDayClose() == b) ? ret.add(1) : ret.add(0);
-        temp = (this.getPrevDayOpen() == b) ? ret.add(1) : ret.add(0);
-        temp = (this.getPrevDayVolume() == b) ? ret.add(1) : ret.add(0);
-        temp = (this.getPrevDayHigh() == b) ? ret.add(1) : ret.add(0);
-        temp = (this.getPrevDayLow() == b) ? ret.add(1) : ret.add(0);
-        
-        return ret;
-    }
-    
-    public static ArrayList<Integer> countPredz(ArrayList<Predicatez> list, 
-            boolean b) {
-        
-        ArrayList<Integer> ret = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0));
-        //ArrayList<Integer> temp = new ArrayList<>();
-        for(Predicatez p : list) {
-            //temp = p.countPred(b);
-            addToList(ret, p.countPred(b));
-        }   
-        return ret;
-    }
-    
-    //Add to list to get total results of count methods
-    public static void addToList(ArrayList<Integer> total, 
-            ArrayList<Integer> temp) {
-        
-        for(int i = 0; i < (total.size() - 1); i++) {
-            //Add new value
-            total.add(i, total.get(i) + temp.get(i));
-            //Remove old value
-            total.remove(i + 1);
-        }   
-    }
-    
-    //Print results from count methods
-    public static void printPredNum(ArrayList<Integer> list) {
-        String s = String.format("SDG: %d, PDC: %d, PDO: %d, PDV: %d, PDH: %d,"
-                + " PDL: %d", list.get(0), list.get(1), list.get(2),
-                list.get(3), list.get(4), list.get(5));
-        
-        System.out.println(s);
+    /*
+    Counts the number of boolean/parameter values in each entry predicatez
+    */
+    public static PredicatezCount countPredicatez(ArrayList<Entry> list, boolean b) {
+        Predicatez p;
+        PredicatezCount count = new PredicatezCount(b);
+        for(Entry e : list) {
+            p = e.getEntryPred();
+            if(p.getSameDayGain() == b) {
+                count.SDG++;
+            }
+            if(p.getPrevDayClose() == b) {
+                count.PDC++;
+            }
+            if(p.getPrevDayOpen() == b) {
+                count.PDO++;
+            }
+            if(p.getPrevDayVolume() == b) {
+                count.PDV++;
+            }
+            if(p.getPrevDayHigh() == b) {
+                count.PDH++;
+            }
+            if(p.getPrevDayLow() == b) {
+                count.PDL++;
+            }
+        }
+        return count;
     }
 }
