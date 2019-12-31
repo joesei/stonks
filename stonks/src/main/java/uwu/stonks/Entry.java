@@ -115,4 +115,107 @@ public class Entry {
         }
         return entryList;
     }
+    
+    /*
+    Return a list of entrys containing the specified predicatez/boolean pairs
+    Paired by same index 
+    predz and bools must have same number of objects
+    */
+    public static ArrayList<Entry> getEntrysByPredz(ArrayList<Entry> list, 
+        ArrayList<Predicatez.Predz> predz, ArrayList<Boolean> bools) {
+        
+        ArrayList<Entry> ret = new ArrayList<>();
+        Predicatez p;
+        for(Entry e : list) {
+            p = e.getEntryPred();
+            //Check whether all predz/boolean pairs are present
+            boolean b;
+            if(predz.size() == 1) {
+                b = bools.get(0);
+                switch(predz.get(0)) {
+                        case SDG:
+                            if(p.getSameDayGain() == b) {
+                                ret.add(e);
+                            }
+                            break;
+                        case PDC:
+                            if(p.getPrevDayClose() == b) {
+                                ret.add(e);
+                            }
+                            break;
+                        case PDO:
+                            if(p.getPrevDayOpen() == b) {
+                                ret.add(e);
+                            }
+                            break;
+                        case PDV:
+                            if(p.getPrevDayVolume() == b) {
+                                ret.add(e);
+                            }
+                            break;
+                        case PDH:
+                            if(p.getPrevDayHigh() == b) {
+                                ret.add(e);
+                            }
+                            break;
+                        case PDL:
+                            if(p.getPrevDayLow() == b) {
+                                ret.add(e);
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+            } else {
+                int count = 0;
+                for(int i = 0; i < predz.size(); i++) {
+                    //Will break and not add predicate to return list if check failed
+                    if(i != count) {
+                        break;
+                    }
+                    b = bools.get(i);
+                    switch(predz.get(i)) {
+                        case SDG: 
+                            if(p.getSameDayGain() == b) {
+                                count++;
+                            }
+                            break;
+                        case PDC:
+                            if(p.getPrevDayClose() == b) {
+                                count++;
+                            }
+                            break;
+                        case PDO:
+                            if(p.getPrevDayOpen() == b) {
+                                count++;
+                            }
+                            break;
+                        case PDV:
+                            if(p.getPrevDayVolume() == b) {
+                                count++;
+                            }
+                            break;
+                        case PDH:
+                            if(p.getPrevDayHigh() == b) {
+                                count++;
+                            }
+                            break;
+                        case PDL:
+                            if(p.getPrevDayLow() == b) {
+                                count++;
+                            }
+                            break;
+                        default:
+                            break;
+                    }    
+                }
+                //Appends predicate to return list if succesfully looped through
+                //all predz
+                if(count == predz.size()) {
+                    ret.add(e);
+                }
+            }
+        }
+        return ret;
+    }
 }
