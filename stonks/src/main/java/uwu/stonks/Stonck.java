@@ -30,12 +30,13 @@ import uwu.stonks.Predicatez.Predz;
 public class Stonck {
     
     final String fileName;
-    final int tradeDays = 253;
+    final int tradeDays;
     ArrayList<Entry> entrys;
     
     public Stonck(String fileName) {
         this.fileName = fileName;
         this.entrys = Entry.getEntryList(fileName);
+        this.tradeDays = this.entrys.size();
         initAll();
     }
     
