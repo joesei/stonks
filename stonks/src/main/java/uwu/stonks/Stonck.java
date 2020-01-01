@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2019 Jose Manuel Hernandez.
+ * Copyright 2019-2020 Jose Manuel Hernandez.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -78,7 +78,7 @@ public class Stonck {
     public void printPredz() {
         System.out.println("Printing predicatez");
         for(Entry e : this.getEntrys()) {
-            e.getEntryPred().printPredicate();
+            e.getPredicatez().printPredicate();
         }
     }
 
@@ -94,7 +94,7 @@ public class Stonck {
         System.out.println("Printing predicatez");
         Predicatez p;
         for(Entry e : list) {
-            p = e.getEntryPred();
+            p = e.getPredicatez();
             p.printPredicate();
         }
     }
@@ -107,19 +107,19 @@ public class Stonck {
         Entry curr = this.entrys.get(0);
         Entry prev;  
         //First entry doesn't have previous
-        curr.getEntryPred().setSameDayGain(curr);
+        curr.getPredicatez().setSameDayGain(curr);
         curr.getEntryPerc().setSameDayGain(curr);
         //Set values for rest of entrys
         for(int i = 1; i < this.entrys.size() - 1; i ++) {
             curr = this.entrys.get(i);
             prev = this.entrys.get(i - 1);
             //Set the predicatez
-            curr.getEntryPred().setSameDayGain(curr);
-            curr.getEntryPred().setPrevDayClose(curr, prev);
-            curr.getEntryPred().setPrevDayOpen(curr, prev);
-            curr.getEntryPred().setPrevDayVolume(curr, prev);
-            curr.getEntryPred().setPrevDayHigh(curr, prev);
-            curr.getEntryPred().setPrevDayLow(curr, prev);         
+            curr.getPredicatez().setSameDayGain(curr);
+            curr.getPredicatez().setPrevDayClose(curr, prev);
+            curr.getPredicatez().setPrevDayOpen(curr, prev);
+            curr.getPredicatez().setPrevDayVolume(curr, prev);
+            curr.getPredicatez().setPrevDayHigh(curr, prev);
+            curr.getPredicatez().setPrevDayLow(curr, prev);         
             //Set the percentz
             curr.getEntryPerc().setSameDayGain(curr);
             curr.getEntryPerc().setPrevDayClose(curr, prev);

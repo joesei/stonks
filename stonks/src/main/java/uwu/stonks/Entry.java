@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2019 Jose Manuel Hernandez.
+ * Copyright 2019-2020 Jose Manuel Hernandez.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -81,7 +81,7 @@ public class Entry {
         return this.close;
     }
     
-    public Predicatez getEntryPred() {
+    public Predicatez getPredicatez() {
         return this.predicatez;
     }
     
@@ -131,7 +131,7 @@ public class Entry {
         ArrayList<Entry> ret = new ArrayList<>();
         Predicatez p;
         for(Entry e : list) {
-            p = e.getEntryPred();
+            p = e.getPredicatez();
             //Check whether all predz/boolean pairs are present
             boolean b;       
             int count = 0;

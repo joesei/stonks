@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2019 Jose Manuel Hernandez.
+ * Copyright 2019-2020 Jose Manuel Hernandez.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
