@@ -23,14 +23,6 @@
  */
 package uwu.stonks;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 /**
  * Holds values of a single trading day 
  * @author Jose Manuel Hernandez
@@ -85,103 +77,7 @@ public class Entry {
         return this.predicatez;
     }
     
-    public Percentz getEntryPerc() {
+    public Percentz getPercentz() {
         return this.percentz;
-    }
-    
-    //--------------------------------------------------------------------------
-    /**
-     *Get the values stored in a csv file found in the csv folder
-     */
-    public static ArrayList<Entry> getEntryList(String fileName) {
-        String path = System.getProperty("user.dir") + "\\csv\\" + fileName;
-        ArrayList<Entry> entryList = new ArrayList<>(); 
-        File file = new File(path);
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            //Get first line out of way
-            String s = br.readLine();
-            List<String> temp;
-            while((s = br.readLine()) != null) {
-                temp = Arrays.asList(s.split(","));
-                String d = temp.get(0);
-                float o = Float.valueOf(temp.get(1));
-                float h = Float.valueOf(temp.get(2));
-                float l = Float.valueOf(temp.get(3));
-                float c = Float.valueOf(temp.get(4));
-                int v = Integer.valueOf(temp.get(6));
-                entryList.add(new Entry(d, v, o, h, l, c));
-            }
-            br.close();
-        } catch(IOException | NumberFormatException ex) {
-        } finally {
-            System.out.println("CSV file succesfully read");
-        }
-        return entryList;
-    }
-    
-    /*
-    Return a list of entrys containing the specified predicatez/boolean pairs
-    Paired by same index 
-    predz and bools must have same number of objects
-    */
-    public static ArrayList<Entry> getEntrysByPredz(ArrayList<Entry> list, 
-        ArrayList<Predicatez.Predz> predz, ArrayList<Boolean> bools) {
-        
-        ArrayList<Entry> ret = new ArrayList<>();
-        Predicatez p;
-        for(Entry e : list) {
-            p = e.getPredicatez();
-            //Check whether all predz/boolean pairs are present
-            boolean b;       
-            int count = 0;
-            for(int i = 0; i < predz.size(); i++) {
-                //Will break and not add predicate to return list if check failed
-                if(i != count) {
-                    break;
-                }
-                b = bools.get(i);
-                switch(predz.get(i)) {
-                    case SDG: 
-                        if(p.getSameDayGain() == b) {
-                            count++;
-                        }
-                        break;
-                    case PDC:
-                        if(p.getPrevDayClose() == b) {
-                            count++;
-                        }
-                        break;
-                    case PDO:
-                        if(p.getPrevDayOpen() == b) {
-                            count++;
-                        }
-                        break;
-                    case PDV:
-                        if(p.getPrevDayVolume() == b) {
-                            count++;
-                        }
-                        break;
-                    case PDH:
-                        if(p.getPrevDayHigh() == b) {
-                            count++;
-                        }
-                        break;
-                    case PDL:
-                        if(p.getPrevDayLow() == b) {
-                            count++;
-                        }
-                        break;
-                    default:
-                        break;
-                }    
-            }
-            //Appends predicate to return list if succesfully looped through
-            //all predz
-            if(count == predz.size()) {
-                ret.add(e);
-            }    
-        }
-        return ret;
     }
 }
