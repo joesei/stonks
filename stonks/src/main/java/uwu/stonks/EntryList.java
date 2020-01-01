@@ -50,8 +50,12 @@ public class EntryList {
         return this.list.get(index);
     }
     
+    public int size() {
+        return this.list.size();
+    }
+    
     /**
-     * Initialize the list with Entry(s) from a CSV file
+     * Initialize this EntryList with Entry(s) from a CSV file.
      * @param fileName name of CSV file 
      */
     public void initByFile(String fileName) {
@@ -66,6 +70,70 @@ public class EntryList {
             float c = Float.valueOf(temp.get(4));
             int v = Integer.valueOf(temp.get(6));
             this.list.add(new Entry(d, v, o, h, l, c));
+        }
+    }
+    
+    /**
+     * Initialize this EntryList with Entry(s) from another EntryList that have
+     * Predicatez with the same Predicatez/Boolean pairs.Both arrays have to be
+     * the same length.
+     * ex: [SDG, PVH] , [true, false]
+     * It will look through all the Entry(s) in list to find Predicatez that have
+     * sameDayGain = true and prevDayVolume = false.
+     * 
+     * @param list list to be searched
+     * @param e 
+     * @param b 
+     */
+    public void initByPredicatez(EntryList list, PredicatezEnum[] e, boolean[] b) {
+        if(e.length == b.length) {
+            //Check must equal e.length so that entry can be added to this EntryList
+            int check = 0;
+            //Loop through Predicatez
+            for(int i = 0; i < list.size(); i++) {
+                Predicatez p = list.get(i).getPredicatez();
+                //Loop through array
+                for(int j = 0; j < e.length; j++) {
+                    switch(e[j]) {
+                        case SDG:
+                            if(p.getSameDayGain() == b[j]) {
+                                check++;
+                            }
+                            break;
+                        case PDC:
+                            if(p.getPrevDayClose() == b[j]) {
+                                check++;
+                            }
+                            break;
+                        case PDO:
+                            if(p.getPrevDayOpen() == b[j]) {
+                                check++;
+                            }
+                            break;
+                        case PDV:
+                            if(p.getPrevDayVolume() == b[j]) {
+                                check++;
+                            }
+                            break;
+                        case PDH:
+                            if(p.getPrevDayHigh() == b[j]) {
+                                check++;
+                            }
+                            break;
+                        case PDL:
+                            if(p.getPrevDayLow() == b[j]) {
+                                check++;
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                    
+                }
+                if(check == e.length) {
+                    this.list.add(list.get(i));
+                }
+            }
         }
     }
 }
