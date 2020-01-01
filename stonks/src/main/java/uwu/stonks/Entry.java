@@ -86,9 +86,9 @@ public class Entry {
     }
     
     //--------------------------------------------------------------------------
-    /*
-    Get the values stored in a csv file found in the csv folder
-    */
+    /**
+     *Get the values stored in a csv file found in the csv folder
+     */
     public static ArrayList<Entry> getEntryList(String fileName) {
         String path = System.getProperty("user.dir") + "\\csv\\" + fileName;
         ArrayList<Entry> entryList = new ArrayList<>(); 
@@ -129,92 +129,54 @@ public class Entry {
         for(Entry e : list) {
             p = e.getEntryPred();
             //Check whether all predz/boolean pairs are present
-            boolean b;
-            if(predz.size() == 1) {
-                b = bools.get(0);
-                switch(predz.get(0)) {
-                        case SDG:
-                            if(p.getSameDayGain() == b) {
-                                ret.add(e);
-                            }
-                            break;
-                        case PDC:
-                            if(p.getPrevDayClose() == b) {
-                                ret.add(e);
-                            }
-                            break;
-                        case PDO:
-                            if(p.getPrevDayOpen() == b) {
-                                ret.add(e);
-                            }
-                            break;
-                        case PDV:
-                            if(p.getPrevDayVolume() == b) {
-                                ret.add(e);
-                            }
-                            break;
-                        case PDH:
-                            if(p.getPrevDayHigh() == b) {
-                                ret.add(e);
-                            }
-                            break;
-                        case PDL:
-                            if(p.getPrevDayLow() == b) {
-                                ret.add(e);
-                            }
-                            break;
-                        default:
-                            break;
-                    }
-            } else {
-                int count = 0;
-                for(int i = 0; i < predz.size(); i++) {
-                    //Will break and not add predicate to return list if check failed
-                    if(i != count) {
+            boolean b;       
+            int count = 0;
+            for(int i = 0; i < predz.size(); i++) {
+                //Will break and not add predicate to return list if check failed
+                if(i != count) {
+                    break;
+                }
+                b = bools.get(i);
+                switch(predz.get(i)) {
+                    case SDG: 
+                        if(p.getSameDayGain() == b) {
+                            count++;
+                        }
                         break;
-                    }
-                    b = bools.get(i);
-                    switch(predz.get(i)) {
-                        case SDG: 
-                            if(p.getSameDayGain() == b) {
-                                count++;
-                            }
-                            break;
-                        case PDC:
-                            if(p.getPrevDayClose() == b) {
-                                count++;
-                            }
-                            break;
-                        case PDO:
-                            if(p.getPrevDayOpen() == b) {
-                                count++;
-                            }
-                            break;
-                        case PDV:
-                            if(p.getPrevDayVolume() == b) {
-                                count++;
-                            }
-                            break;
-                        case PDH:
-                            if(p.getPrevDayHigh() == b) {
-                                count++;
-                            }
-                            break;
-                        case PDL:
-                            if(p.getPrevDayLow() == b) {
-                                count++;
-                            }
-                            break;
-                        default:
-                            break;
-                    }    
-                }
-                //Appends predicate to return list if succesfully looped through
-                //all predz
-                if(count == predz.size()) {
-                    ret.add(e);
-                }
+                    case PDC:
+                        if(p.getPrevDayClose() == b) {
+                            count++;
+                        }
+                        break;
+                    case PDO:
+                        if(p.getPrevDayOpen() == b) {
+                            count++;
+                        }
+                        break;
+                    case PDV:
+                        if(p.getPrevDayVolume() == b) {
+                            count++;
+                        }
+                        break;
+                    case PDH:
+                        if(p.getPrevDayHigh() == b) {
+                            count++;
+                        }
+                        break;
+                    case PDL:
+                        if(p.getPrevDayLow() == b) {
+                            count++;
+                        }
+                        break;
+                    default:
+                        break;
+                }    
             }
+            //Appends predicate to return list if succesfully looped through
+            //all predz
+            if(count == predz.size()) {
+                ret.add(e);
+            }    
         }
         return ret;
     }

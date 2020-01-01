@@ -146,84 +146,46 @@ public class Predicatez {
             p = e.getEntryPred();
             //Check whether all predz/boolean pairs are present
             boolean b;
-            if(predz.size() == 1) {
-                b = bools.get(0);
-                switch(predz.get(0)) {
-                        case SDG:
-                            if(p.getSameDayGain() == b) {
-                                ret.add(p);
-                            }
-                            break;
-                        case PDC:
-                            if(p.getPrevDayClose() == b) {
-                                ret.add(p);
-                            }
-                            break;
-                        case PDO:
-                            if(p.getPrevDayOpen() == b) {
-                                ret.add(p);
-                            }
-                            break;
-                        case PDV:
-                            if(p.getPrevDayVolume() == b) {
-                                ret.add(p);
-                            }
-                            break;
-                        case PDH:
-                            if(p.getPrevDayHigh() == b) {
-                                ret.add(p);
-                            }
-                            break;
-                        case PDL:
-                            if(p.getPrevDayLow() == b) {
-                                ret.add(p);
-                            }
-                            break;
-                        default:
-                            break;
-                    }
-            } else {
-                int count = 0;
-                for(int i = 0; i < predz.size(); i++) {
-                    //Will break and not add predicate to return list if check failed
-                    if(i != count) {
+            int count = 0;
+            for(int i = 0; i < predz.size(); i++) {
+                //Will break and not add predicate to return list if check failed
+                if(i != count) {
+                    break;
+                }
+                b = bools.get(i);
+                switch(predz.get(i)) {
+                    case SDG:
+                        if(p.getSameDayGain() == b) {
+                            count++;
+                        }
                         break;
-                    }
-                    b = bools.get(i);
-                    switch(predz.get(i)) {
-                        case SDG:
-                            if(p.getSameDayGain() == b) {
-                                count++;
-                            }
-                            break;
-                        case PDC:
-                            if(p.getPrevDayClose() == b) {
-                                count++;
-                            }
-                            break;
-                        case PDO:
-                            if(p.getPrevDayOpen() == b) {
-                                count++;
-                            }
-                            break;
-                        case PDV:
-                            if(p.getPrevDayVolume() == b) {
-                                count++;
-                            }
-                            break;
-                        case PDH:
-                            if(p.getPrevDayHigh() == b) {
-                                count++;
-                            }
-                            break;
-                        case PDL:
-                            if(p.getPrevDayLow() == b) {
-                                count++;
-                            }
-                            break;
-                        default:
-                            break;
-                    }    
+                    case PDC:
+                        if(p.getPrevDayClose() == b) {
+                            count++;
+                        }
+                        break;
+                    case PDO:
+                        if(p.getPrevDayOpen() == b) {
+                            count++;
+                        }
+                        break;
+                    case PDV:
+                        if(p.getPrevDayVolume() == b) {
+                            count++;
+                        }
+                        break;
+                    case PDH:
+                        if(p.getPrevDayHigh() == b) {
+                            count++;
+                        }
+                        break;
+                    case PDL:
+                        if(p.getPrevDayLow() == b) {
+                            count++;
+                        }
+                        break;
+                    default:
+                        break;    
                 }
                 //Appends predicate to return list if succesfully looped through
                 //all predz

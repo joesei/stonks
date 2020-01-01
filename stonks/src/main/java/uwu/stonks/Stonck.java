@@ -23,18 +23,29 @@
  */
 package uwu.stonks;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import uwu.stonks.Predicatez.Predz;
 
 public class Stonck {
-    
+    //The csv file name
     final String fileName;
+    
+    //This will be number of lines in the file excluding first line
     final int tradeDays;
+    
+    //Average number of trading days
+    static final int DAYSYEAR = 253;
+    static final int DAYSMONTH = 21;
+    static final int DAYSWEEK = 5;
+    
+    EntryList Entrys;
     ArrayList<Entry> entrys;
     
     public Stonck(String fileName) {
         this.fileName = fileName;
+        this.Entrys = new EntryList(fileName);
         this.entrys = Entry.getEntryList(fileName);
         this.tradeDays = this.entrys.size();
         initAll();
@@ -44,15 +55,15 @@ public class Stonck {
         return this.entrys;
     }
     
-    /*
-    Used to test features
-    */
+    /**
+     *Used to test features
+     */
     public void test() {
         //Prints all predicatez
         printPredz();
         //Predz and bools are parameters to create an entry list
-        ArrayList<Predz> predz = new ArrayList<>(Arrays.asList(Predz.SDG, Predz.PDH));
-        ArrayList<Boolean> bools = new ArrayList<>(Arrays.asList(true, true));
+        ArrayList<Predz> predz = new ArrayList<>(Arrays.asList(Predz.PDC));
+        ArrayList<Boolean> bools = new ArrayList<>(Arrays.asList(true));
         ArrayList<Entry> elist = Entry.getEntrysByPredz(this.entrys, predz, bools);
         printPredzFromEntrys(elist);
         //Count predicatez by boolean
