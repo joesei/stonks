@@ -24,48 +24,28 @@
 package uwu.stonks;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
- * Holds a list of Entry(s)
- * @author Jose Manuel Hernandez
+ * Holds a list of Predicatez(s)
+ * @author Jose Manuel Hernandez 
  */
-public class EntryList {
-    ArrayList<Entry> list = new ArrayList<>();
+public class PredicatezList {
+    ArrayList<Predicatez> list = new ArrayList<>();
     
-    public EntryList() {
-
+    public PredicatezList() {
+        
     }
     
-    public void add(Entry e) {
-        this.list.add(e);
+    public void add(Predicatez p) {
+        this.list.add(p);
+    }
+            
+    public boolean remove(Predicatez p) {
+        return this.list.remove(p);
     }
     
-    public boolean remove(Entry e) {
-        return this.list.remove(e);
-    }
-    
-    public Entry get(int index) {
+    public Predicatez get(int index) {
         return this.list.get(index);
     }
     
-    /**
-     * Initialize the list with Entry(s) from a CSV file
-     * @param fileName name of CSV file 
-     */
-    public void initByFile(String fileName) {
-        List<String> entrys = FileIO.getLines(System.getProperty("user.dir") + "\\csv\\" + fileName);
-        //First line doesn't hold data. So it is skipped
-        for(int i = 1; i < entrys.size(); i++) {
-            List<String> temp = Arrays.asList(entrys.get(i).split(","));
-            String d = temp.get(0);
-            float o = Float.valueOf(temp.get(1));
-            float h = Float.valueOf(temp.get(2));
-            float l = Float.valueOf(temp.get(3));
-            float c = Float.valueOf(temp.get(4));
-            int v = Integer.valueOf(temp.get(6));
-            this.list.add(new Entry(d, v, o, h, l, c));
-        }
-    }
 }

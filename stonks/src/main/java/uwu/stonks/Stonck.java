@@ -23,7 +23,6 @@
  */
 package uwu.stonks;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import uwu.stonks.Predicatez.Predz;
@@ -40,12 +39,12 @@ public class Stonck {
     static final int DAYSMONTH = 21;
     static final int DAYSWEEK = 5;
     
-    EntryList Entrys;
+    EntryList Entrys = new EntryList();
     ArrayList<Entry> entrys;
     
     public Stonck(String fileName) {
         this.fileName = fileName;
-        this.Entrys = new EntryList(fileName);
+        this.Entrys.initByFile(fileName);
         this.entrys = Entry.getEntryList(fileName);
         this.tradeDays = this.entrys.size();
         initAll();

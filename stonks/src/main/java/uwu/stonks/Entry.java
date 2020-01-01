@@ -31,6 +31,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Holds values of a single trading day 
+ * @author Jose Manuel Hernandez
+ */
 public class Entry {
     
     final String date;
@@ -38,7 +42,7 @@ public class Entry {
     final float open, high, low, close;
     Predicatez predicatez;
     Percentz percentz;
-        
+    
     public Entry(String date, int volume, float open, float high, float low, 
             float close) {
         

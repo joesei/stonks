@@ -30,8 +30,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- *Functions for input/output to file
- * 
+ * Functions for input/output to file
+ * @author Jose Manuel Hernandez
  */
 public class FileIO {
     
@@ -49,6 +49,7 @@ public class FileIO {
                 lines.add(s);
             }
         } catch(IOException e) {   
+            
         }
         return lines;
     }
