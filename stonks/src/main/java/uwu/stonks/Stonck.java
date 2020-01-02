@@ -43,7 +43,6 @@ public class Stonck {
         this.fileName = fileName;
         this.entrys.initByFile(fileName);
         this.tradeDays = this.entrys.size();
-        initAll();
     }
     
     public EntryList getEntryList() {
@@ -72,38 +71,5 @@ public class Stonck {
         count.printCount(); 
        
         
-    }
-    
-    
-    /**
-     * Initialize values of Predicatez/Percentz for all entries in Stonck
-     * 
-     */
-    private void initAll() {
-        //Current and previous entry
-        Entry curr = this.entrys.get(0);
-        Entry prev;  
-        //First entry doesn't have previous
-        curr.getPredicatez().setSameDayGain(curr);
-        curr.getPercentz().setSameDayGain(curr);
-        //Set values for rest of entrys
-        for(int i = 1; i < this.entrys.size() - 1; i ++) {
-            curr = this.entrys.get(i);
-            prev = this.entrys.get(i - 1);
-            //Set the predicatez
-            curr.getPredicatez().setSameDayGain(curr);
-            curr.getPredicatez().setPrevDayClose(curr, prev);
-            curr.getPredicatez().setPrevDayOpen(curr, prev);
-            curr.getPredicatez().setPrevDayVolume(curr, prev);
-            curr.getPredicatez().setPrevDayHigh(curr, prev);
-            curr.getPredicatez().setPrevDayLow(curr, prev);         
-            //Set the percentz
-            curr.getPercentz().setSameDayGain(curr);
-            curr.getPercentz().setPrevDayClose(curr, prev);
-            curr.getPercentz().setPrevDayOpen(curr, prev);
-            curr.getPercentz().setPrevDayVolume(curr, prev);
-            curr.getPercentz().setPrevDayHigh(curr, prev);
-            curr.getPercentz().setPrevDayLow(curr, prev);      
-        }
     }
 }

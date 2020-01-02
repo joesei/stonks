@@ -73,6 +73,37 @@ public class EntryList {
     }
     
     /**
+     * Initialize Predicatez and Percentz for each Entry in this list
+     */
+    private void initEntryObjects() {
+        //Current and previous entry
+        Entry curr = this.list.get(0);
+        Entry prev;  
+        //First entry doesn't have previous
+        curr.getPredicatez().setSameDayGain(curr);
+        curr.getPercentz().setSameDayGain(curr);
+        //Set values for rest of entrys
+        for(int i = 1; i < this.list.size() - 1; i ++) {
+            curr = this.list.get(i);
+            prev = this.list.get(i - 1);
+            //Set the predicatez
+            curr.getPredicatez().setSameDayGain(curr);
+            curr.getPredicatez().setPrevDayClose(curr, prev);
+            curr.getPredicatez().setPrevDayOpen(curr, prev);
+            curr.getPredicatez().setPrevDayVolume(curr, prev);
+            curr.getPredicatez().setPrevDayHigh(curr, prev);
+            curr.getPredicatez().setPrevDayLow(curr, prev);         
+            //Set the percentz
+            curr.getPercentz().setSameDayGain(curr);
+            curr.getPercentz().setPrevDayClose(curr, prev);
+            curr.getPercentz().setPrevDayOpen(curr, prev);
+            curr.getPercentz().setPrevDayVolume(curr, prev);
+            curr.getPercentz().setPrevDayHigh(curr, prev);
+            curr.getPercentz().setPrevDayLow(curr, prev);      
+        }
+    }
+    
+    /**
      * Initialize this EntryList with Entry(s) from a CSV file.
      * @param fileName name of CSV file 
      */
@@ -90,6 +121,7 @@ public class EntryList {
             int v = Integer.valueOf(temp.get(6));
             this.list.add(new Entry(d, v, o, h, l, c));
         }
+        initEntryObjects();
     }
     
     /**
