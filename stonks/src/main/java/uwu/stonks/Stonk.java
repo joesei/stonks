@@ -24,7 +24,8 @@
 package uwu.stonks;
 
 /**
- * 
+ * A single stock(stonk) that holds all trade days data in the form of
+ * Entry(s)
  * @author Jose Manuel Hernandez
  */
 public class Stonk {
@@ -74,7 +75,11 @@ public class Stonk {
         //Count predicatez by boolean
         PredicatezCount count = new PredicatezCount(list, true);
         count.printCount(); 
-       
+        
+        //Decrease to Increase
+        EntryGroups gr = new EntryGroups();
+        gr.decreaseToIncrease(this.entrys);
+        gr.printPredicatez();
         
     }
 }
