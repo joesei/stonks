@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2020 JoseHernandez.
+ * Copyright 2020 Jose Manuel Hernandez.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -60,14 +60,12 @@ public class Stonk {
      * 
      */
     public void test() {
-        //Print
+        //Print all stonk Predicatez
         this.entrys.printPredicatez();
         
         //Predz and bools are parameters to create an entry list
         PredicatezEnum[] e = {PredicatezEnum.SDG, PredicatezEnum.PDH};
         boolean[] b = {true, true};
-        
-        //New EntryList
         EntryList list = new EntryList(); 
         list.initByPredicatez(this.entrys, e, b);
         list.printPredicatez();
@@ -76,7 +74,7 @@ public class Stonk {
         PredicatezCount count = new PredicatezCount(list, true);
         count.printCount(); 
         
-        //Decrease to Increase
+        //Decrease to Increase groups of EntryLists
         EntryGroups gr = new EntryGroups();
         gr.decreaseToIncrease(this.entrys);
         gr.printPredicatez();

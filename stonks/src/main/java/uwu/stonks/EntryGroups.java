@@ -25,7 +25,7 @@ package uwu.stonks;
 
 import java.util.ArrayList;
 
-/**\
+/**
  * A list of EntryList(s) grouped by certain characteristics 
  * @author Jose Manuel Hernandez
  */
@@ -38,6 +38,17 @@ public class EntryGroups {
     
     public EntryList get(int index) {
         return this.lists.get(index);
+    }
+    
+    public void printPredicatez() {
+        if(this.lists == null || this.lists.isEmpty()) {
+            System.out.println("No EntryList(s) in EntryGroups");
+        } else {
+            for(int i = 0; i < this.lists.size(); i++) {
+                System.out.println(String.format("Group %d", i + 1));
+                this.lists.get(i).printPredicatez();
+            }
+        }
     }
     
     /**
@@ -66,17 +77,6 @@ public class EntryGroups {
                 }       
                 firstFalse = true;
             }          
-        }
-    }
-    
-    public void printPredicatez() {
-        if(this.lists == null || this.lists.isEmpty()) {
-            System.out.println("No EntryList(s) in EntryGroups");
-        } else {
-            for(int i = 0; i < this.lists.size(); i++) {
-                System.out.println(String.format("Group %d", i + 1));
-                this.lists.get(i).printPredicatez();
-            }
         }
     }
 }
