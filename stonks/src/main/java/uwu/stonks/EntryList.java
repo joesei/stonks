@@ -139,10 +139,10 @@ public class EntryList {
     public void initByPredicatez(EntryList list, PredicatezEnum[] e, boolean[] b) {
         if(e.length == b.length) {
             this.list = new ArrayList<>();
-            //Check must equal e.length so that entry can be added to this EntryList
-            int check = 0;
             //Loop through Predicatez
             for(int i = 0; i < list.size(); i++) {
+                //Check must equal e.length so that entry can be added to this EntryList
+                int check = 0;
                 Predicatez p = list.get(i).getPredicatez();
                 //Loop through array
                 for(int j = 0; j < e.length; j++) {
