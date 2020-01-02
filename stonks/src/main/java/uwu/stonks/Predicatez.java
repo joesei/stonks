@@ -23,8 +23,6 @@
  */
 package uwu.stonks;
 
-import java.util.ArrayList;
-
 public class Predicatez {
     
     //true == higher 
@@ -41,6 +39,7 @@ public class Predicatez {
     }
     
     public Predicatez() {
+        
     }
     
     //Setters-------------------------------------------------------------------
@@ -100,100 +99,5 @@ public class Predicatez {
                 this.prevDayLow);
         
         System.out.println(s);
-    }
-    
-    /*
-    Counts the number of boolean/parameter values in each entry predicatez
-    */
-    public static PredicatezCount countPredicatez(ArrayList<Entry> list, boolean b) {
-        Predicatez p;
-        PredicatezCount count = new PredicatezCount(b);
-        for(Entry e : list) {
-            p = e.getEntryPred();
-            if(p.getSameDayGain() == b) {
-                count.SDG++;
-            }
-            if(p.getPrevDayClose() == b) {
-                count.PDC++;
-            }
-            if(p.getPrevDayOpen() == b) {
-                count.PDO++;
-            }
-            if(p.getPrevDayVolume() == b) {
-                count.PDV++;
-            }
-            if(p.getPrevDayHigh() == b) {
-                count.PDH++;
-            }
-            if(p.getPrevDayLow() == b) {
-                count.PDL++;
-            }
-        }
-        return count;
-    }
-    
-    /*
-    Return a list of predicatez containing the specified predicatez/boolean pairs
-    Paired by same index 
-    predz and bools must have same number of objects
-    */
-    public static ArrayList<Predicatez> getPredicatezByValue(ArrayList<Entry> list, 
-            ArrayList<Predz> predz, ArrayList<Boolean> bools) {
-        
-        ArrayList<Predicatez> ret = new ArrayList<>();
-        Predicatez p;
-        for(Entry e : list) {
-            p = e.getEntryPred();
-            //Check whether all predz/boolean pairs are present
-            boolean b;
-            int count = 0;
-            for(int i = 0; i < predz.size(); i++) {
-                //Will break and not add predicate to return list if check failed
-                if(i != count) {
-                    break;
-                }
-                b = bools.get(i);
-                switch(predz.get(i)) {
-                    case SDG:
-                        if(p.getSameDayGain() == b) {
-                            count++;
-                        }
-                        break;
-                    case PDC:
-                        if(p.getPrevDayClose() == b) {
-                            count++;
-                        }
-                        break;
-                    case PDO:
-                        if(p.getPrevDayOpen() == b) {
-                            count++;
-                        }
-                        break;
-                    case PDV:
-                        if(p.getPrevDayVolume() == b) {
-                            count++;
-                        }
-                        break;
-                    case PDH:
-                        if(p.getPrevDayHigh() == b) {
-                            count++;
-                        }
-                        break;
-                    case PDL:
-                        if(p.getPrevDayLow() == b) {
-                            count++;
-                        }
-                        break;
-                    default:
-                        break;    
-                }
-                //Appends predicate to return list if succesfully looped through
-                //all predz
-                if(count == predz.size()) {
-                    ret.add(p);
-                }
-            }
-        }
-        return ret;
     }
 }

@@ -50,8 +50,26 @@ public class EntryList {
         return this.list.get(index);
     }
     
+    public ArrayList<Entry> getList() {
+        return this.list;
+    }
+    
     public int size() {
         return this.list.size();
+    }
+    
+    /**
+     * Prints all the Predicatez in EntryList
+     */
+    public void printPredicatez() {
+        if(this.list == null || this.list.isEmpty()) {
+            System.out.println("No Entry(s) in EntryList");
+        } else {
+            System.out.println("Printing Predicatez");
+            for(Entry e : this.list) {
+                e.getPredicatez().printPredicate();
+            }
+        }
     }
     
     /**
@@ -59,6 +77,7 @@ public class EntryList {
      * @param fileName name of CSV file 
      */
     public void initByFile(String fileName) {
+        this.list = new ArrayList<>();
         List<String> entrys = FileIO.getLines(System.getProperty("user.dir") + "\\csv\\" + fileName);
         //First line doesn't hold data. So it is skipped
         for(int i = 1; i < entrys.size(); i++) {
@@ -87,6 +106,7 @@ public class EntryList {
      */
     public void initByPredicatez(EntryList list, PredicatezEnum[] e, boolean[] b) {
         if(e.length == b.length) {
+            this.list = new ArrayList<>();
             //Check must equal e.length so that entry can be added to this EntryList
             int check = 0;
             //Loop through Predicatez

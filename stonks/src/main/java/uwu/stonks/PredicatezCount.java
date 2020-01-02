@@ -32,8 +32,29 @@ public class PredicatezCount {
     int PDH = 0;
     int PDL = 0;
     
-    public PredicatezCount(boolean countType) {
+    public PredicatezCount(EntryList list, boolean countType) {
         this.countType = countType;
+        for(Entry e : list.getList()) {
+            Predicatez p = e.getPredicatez();
+            if(p.getSameDayGain() == countType) {
+                this.SDG++;
+            }
+            if(p.getPrevDayClose() == countType) {
+                this.PDC++;
+            }
+            if(p.getPrevDayOpen() == countType) {
+                this.PDO++;
+            }
+            if(p.getPrevDayVolume() == countType) {
+                this.PDV++;
+            }
+            if(p.getPrevDayHigh() == countType) {
+                this.PDH++;
+            }
+            if(p.getPrevDayLow() == countType) {
+                this.PDL++;
+            }
+        }
     }
     
     public void printCount() {

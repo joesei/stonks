@@ -23,15 +23,12 @@
  */
 package uwu.stonks;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import uwu.stonks.Predicatez.Predz;
-
 public class Stonck {
     //The csv file name
     final String fileName;
     
     //This will be number of lines in the file excluding first line
+    //Total number of trade days
     final int tradeDays;
     
     //Average number of trading days
@@ -39,76 +36,56 @@ public class Stonck {
     static final int DAYSMONTH = 21;
     static final int DAYSWEEK = 5;
     
-    EntryList Entrys = new EntryList();
-    ArrayList<Entry> entrys;
+    EntryList entrys = new EntryList();
+
     
     public Stonck(String fileName) {
         this.fileName = fileName;
-        this.Entrys.initByFile(fileName);
-        this.entrys = Entry.getEntryList(fileName);
+        this.entrys.initByFile(fileName);
         this.tradeDays = this.entrys.size();
         initAll();
     }
     
-    public ArrayList<Entry> getEntrys() {
+    public EntryList getEntryList() {
         return this.entrys;
     }
     
     /**
-     *Used to test features
+     * Used to test features
+     * 
      */
     public void test() {
-        //Prints all predicatez
-        printPredz();
+        //Print
+        this.entrys.printPredicatez();
+        
         //Predz and bools are parameters to create an entry list
-        ArrayList<Predz> predz = new ArrayList<>(Arrays.asList(Predz.PDC));
-        ArrayList<Boolean> bools = new ArrayList<>(Arrays.asList(true));
-        ArrayList<Entry> elist = Entry.getEntrysByPredz(this.entrys, predz, bools);
-        printPredzFromEntrys(elist);
+        PredicatezEnum[] e = {PredicatezEnum.SDG, PredicatezEnum.PDH};
+        boolean[] b = {true, true};
+        
+        //New EntryList
+        EntryList list = new EntryList(); 
+        list.initByPredicatez(this.entrys, e, b);
+        list.printPredicatez();
+        
         //Count predicatez by boolean
-        PredicatezCount count = Predicatez.countPredicatez(elist, true);
+        PredicatezCount count = new PredicatezCount(list, true);
         count.printCount(); 
-        
-        
-        //printPredz(plist);
+       
         
     }
     
-    //Print methods-------------------------------------------------------------
-    public void printPredz() {
-        System.out.println("Printing predicatez");
-        for(Entry e : this.getEntrys()) {
-            e.getPredicatez().printPredicate();
-        }
-    }
-
-    public void printPredz(ArrayList<Predicatez> list) {
-        System.out.println("Printing predicatez");
-        for(Predicatez p : list) {
-            p.printPredicate();
-        }
-        
-    }
     
-    public void printPredzFromEntrys(ArrayList<Entry> list) {
-        System.out.println("Printing predicatez");
-        Predicatez p;
-        for(Entry e : list) {
-            p = e.getPredicatez();
-            p.printPredicate();
-        }
-    }
-    //--------------------------------------------------------------------------
-    /*
-    Initialize values of predicatez/percentz for all entries in stonck
-    */
+    /**
+     * Initialize values of Predicatez/Percentz for all entries in Stonck
+     * 
+     */
     private void initAll() {
         //Current and previous entry
         Entry curr = this.entrys.get(0);
         Entry prev;  
         //First entry doesn't have previous
         curr.getPredicatez().setSameDayGain(curr);
-        curr.getEntryPerc().setSameDayGain(curr);
+        curr.getPercentz().setSameDayGain(curr);
         //Set values for rest of entrys
         for(int i = 1; i < this.entrys.size() - 1; i ++) {
             curr = this.entrys.get(i);
@@ -121,12 +98,12 @@ public class Stonck {
             curr.getPredicatez().setPrevDayHigh(curr, prev);
             curr.getPredicatez().setPrevDayLow(curr, prev);         
             //Set the percentz
-            curr.getEntryPerc().setSameDayGain(curr);
-            curr.getEntryPerc().setPrevDayClose(curr, prev);
-            curr.getEntryPerc().setPrevDayOpen(curr, prev);
-            curr.getEntryPerc().setPrevDayVolume(curr, prev);
-            curr.getEntryPerc().setPrevDayHigh(curr, prev);
-            curr.getEntryPerc().setPrevDayLow(curr, prev);      
+            curr.getPercentz().setSameDayGain(curr);
+            curr.getPercentz().setPrevDayClose(curr, prev);
+            curr.getPercentz().setPrevDayOpen(curr, prev);
+            curr.getPercentz().setPrevDayVolume(curr, prev);
+            curr.getPercentz().setPrevDayHigh(curr, prev);
+            curr.getPercentz().setPrevDayLow(curr, prev);      
         }
     }
 }
