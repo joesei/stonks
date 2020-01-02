@@ -32,7 +32,7 @@ public class Main {
         boolean testing = true;
         if(testing) {
             String path = "gpro.csv";
-            Stonck st = new Stonck(path);
+            Stonk st = new Stonk(path);
             st.test();
             
             

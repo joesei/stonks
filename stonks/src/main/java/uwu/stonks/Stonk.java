@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2019-2020 Jose Manuel Hernandez.
+ * Copyright 2020 JoseHernandez.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,11 @@
  */
 package uwu.stonks;
 
-public class Stonck {
+/**
+ * 
+ * @author Jose Manuel Hernandez
+ */
+public class Stonk {
     //The csv file name
     final String fileName;
     
@@ -36,10 +40,11 @@ public class Stonck {
     static final int DAYSMONTH = 21;
     static final int DAYSWEEK = 5;
     
+    //All Entry(s) of a stock(Stonck)
     EntryList entrys = new EntryList();
 
     
-    public Stonck(String fileName) {
+    public Stonk(String fileName) {
         this.fileName = fileName;
         this.entrys.initByFile(fileName);
         this.tradeDays = this.entrys.size();
