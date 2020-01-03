@@ -33,6 +33,7 @@ import java.util.List;
  */
 public class EntryList {
     ArrayList<Entry> list = new ArrayList<>();
+    PredicatezCount count;
     
     public EntryList() {
 
@@ -73,7 +74,16 @@ public class EntryList {
     }
     
     /**
-     * Initialize Predicatez and Percentz for each Entry in this list
+     * Initialize PredicatezCount values. 
+     * @param countType 
+     */
+    public void initPredicatezCount(boolean countType) {
+        this.count = new PredicatezCount(this, countType);
+    }
+    
+    /**
+     * Initialize Predicatez and Percentz for each Entry in this list.
+     * Used when creating EntryList from a file.
      */
     private void initEntryObjects() {
         //Current and previous entry

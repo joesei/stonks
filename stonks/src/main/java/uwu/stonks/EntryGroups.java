@@ -30,47 +30,53 @@ import java.util.ArrayList;
  * @author Jose Manuel Hernandez
  */
 public class EntryGroups {
-    ArrayList<EntryList> lists = new ArrayList<>();
+    ArrayList<EntryList> entryLists = new ArrayList<>();
     
     public EntryGroups() {
         
     }
     
     public EntryList get(int index) {
-        return this.lists.get(index);
+        return this.entryLists.get(index);
     }
     
     public void printPredicatez() {
-        if(this.lists == null || this.lists.isEmpty()) {
+        if(this.entryLists == null || this.entryLists.isEmpty()) {
             System.out.println("No EntryList(s) in EntryGroups");
         } else {
-            for(int i = 0; i < this.lists.size(); i++) {
+            for(int i = 0; i < this.entryLists.size(); i++) {
                 System.out.println(String.format("Group %d", i + 1));
-                this.lists.get(i).printPredicatez();
+                this.entryLists.get(i).printPredicatez();
             }
         }
     }
     
     /**
      * Entry(s) will be grouped based on the Predicatez SDG, starting at false and 
-     * will keep adding to a group until a true is found.
+     * will keep adding to a group until a true is found, if next is also true it
+     * will also be added until another false is found
      * @param list the list of Entry(s)
      */
     public void decreaseToIncrease(EntryList list) {
-        //Whether Predicatez is first false in chain
+        //Checking for the first false -- Is it still trying to find the first
+        //false. Changed to false when the first SDG false value is found. Changed
+        //back to true when a SDG true value is found.
         boolean firstFalse = true;
         EntryList temp = new EntryList();
         for(Entry e : list.getList()) {
             Predicatez p = e.getPredicatez();
+            //If SDG false is found
             if(!p.getSameDayGain()) {
                 if(firstFalse) {
                     if(!temp.getList().isEmpty()) {
-                        this.lists.add(temp);
+                        temp.initPredicatezCount(true);
+                        this.entryLists.add(temp);
                         temp = new EntryList();
                     }
                     firstFalse = false;
                 }
                 temp.add(e);
+            //If SDG true is found
             } else { 
                 if(!temp.getList().isEmpty()) {
                     temp.add(e);
