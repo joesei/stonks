@@ -30,6 +30,7 @@ import java.util.ArrayList;
  * @author Jose Manuel Hernandez
  */
 public class EntryGroups {
+    String type;
     ArrayList<EntryList> entryLists = new ArrayList<>();
     
     public EntryGroups() {
@@ -51,6 +52,14 @@ public class EntryGroups {
         }
     }
     
+    public void printPredicatezCount() {
+        System.out.println(String.format("Type: %s", this.type));
+        for(int i = 0; i < this.entryLists.size(); i++) {
+            System.out.println(String.format("PredicatezCount #%d", i + 1));
+            this.entryLists.get(i).printPredicatezCount();
+        }
+    }
+    
     /**
      * Entry(s) will be grouped based on the Predicatez SDG, starting at false and 
      * will keep adding to a group until a true is found, if next is also true it
@@ -58,6 +67,7 @@ public class EntryGroups {
      * @param list the list of Entry(s)
      */
     public void decreaseToIncrease(EntryList list) {
+        this.type = "Decrease to increase SDG";
         //Checking for the first false -- Is it still trying to find the first
         //false. Changed to false when the first SDG false value is found. Changed
         //back to true when a SDG true value is found.

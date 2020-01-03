@@ -73,6 +73,10 @@ public class EntryList {
         }
     }
     
+    public void printPredicatezCount() {
+        this.count.printCount();
+    }
+    
     /**
      * Initialize PredicatezCount values. 
      * @param countType 
