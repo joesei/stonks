@@ -59,6 +59,10 @@ public class EntryList {
         return this.list.size();
     }
     
+    public PredicatezCount getPredicatezCount() {
+        return this.count;
+    }
+    
     /**
      * Prints all the Predicatez in EntryList
      */

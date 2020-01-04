@@ -64,4 +64,9 @@ public class PredicatezCount {
         
         System.out.println(s);
     }
+    
+    public int[] countToArray() {
+        int[] ret = {this.SDG, this.PDC, this.PDO, this.PDV, this.PDH, this.PDL};
+        return ret;
+    }
 }

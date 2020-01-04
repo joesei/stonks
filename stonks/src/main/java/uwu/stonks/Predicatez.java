@@ -34,10 +34,6 @@ public class Predicatez {
     boolean prevDayHigh;
     boolean prevDayLow;
     
-    public enum Predz {
-        SDG, PDC, PDO, PDV, PDH, PDL;
-    }
-    
     public Predicatez() {
         
     }
@@ -116,5 +112,15 @@ public class Predicatez {
             return false;
         } 
         return true; 
+    }
+    
+    /**
+     * 
+     * @return an array of the Boolean values
+     */
+    public boolean[] predicatezToArray() {
+        boolean[] ret = {this.sameDayGain, this.prevDayClose, this.prevDayOpen, 
+            this.prevDayVolume, this.prevDayHigh, this.prevDayLow};
+        return ret;
     }
 }

@@ -44,7 +44,7 @@ public class Stonk {
     //All Entry(s) of a stock(Stonck)
     EntryList entrys = new EntryList();
 
-    
+
     public Stonk(String fileName) {
         this.fileName = fileName;
         this.entrys.initByFile(fileName);
@@ -71,12 +71,12 @@ public class Stonk {
         list.printPredicatez();
         
         //Count predicatez by boolean
-        PredicatezCount count = new PredicatezCount(list, true);
-        count.printCount(); 
+        //PredicatezCount count = new PredicatezCount(list, true);
+        //count.printCount(); 
         
         //Decrease to Increase groups of EntryLists
         EntryGroups gr = new EntryGroups();
-        gr.decreaseToIncrease(this.entrys);
+        gr.decreaseToIncreaseS(this.entrys);
         //gr.printPredicatez();
         gr.printPredicatezCount();
         

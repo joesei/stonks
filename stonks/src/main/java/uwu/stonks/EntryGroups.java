@@ -41,6 +41,10 @@ public class EntryGroups {
         return this.entryLists.get(index);
     }
     
+    public ArrayList<EntryList> getLists() {
+        return this.entryLists;
+    }
+    
     public void printPredicatez() {
         if(this.entryLists == null || this.entryLists.isEmpty()) {
             System.out.println("No EntryList(s) in EntryGroups");
@@ -67,7 +71,7 @@ public class EntryGroups {
      * @param list the list of Entry(s)
      */
     public void decreaseToIncrease(EntryList list) {
-        this.type = "Decrease to increase SDG";
+        this.type = "Decrease to increase SDG multiple";
         //Checking for the first false -- Is it still trying to find the first
         //false. Changed to false when the first SDG false value is found. Changed
         //back to true when a SDG true value is found.
@@ -93,6 +97,30 @@ public class EntryGroups {
                 }       
                 firstFalse = true;
             }          
+        }
+    }
+    
+    /**
+     * Similar to decreaseToIncrease but only looks for one false SDG before one 
+     * true SDG
+     * @param list 
+     */
+    public void decreaseToIncreaseS(EntryList list) {
+        this.type = "Decrease to increase SDG single";
+        EntryList temp = new EntryList();
+        boolean falseFound = false;
+        for(Entry e : list.getList()) {
+            Predicatez p = e.getPredicatez();
+            if(falseFound && p.getSameDayGain()) {
+                temp.add(e);
+                temp.initPredicatezCount(true);
+                this.entryLists.add(temp);
+                temp = new EntryList();
+                falseFound = false;
+            } else if(!falseFound && !p.getSameDayGain()) {
+                temp.add(e);
+                falseFound = true;
+            }
         }
     }
 }
