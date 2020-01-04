@@ -100,4 +100,21 @@ public class Predicatez {
         
         System.out.println(s);
     }
+    
+    public boolean comparePredicatez(Predicatez p) {
+        if(this.sameDayGain != p.getSameDayGain()) {
+            return false;
+        } else if(this.prevDayClose != p.getPrevDayClose()) {
+            return false;
+        } else if(this.prevDayOpen != p.getPrevDayOpen()) {
+            return false;
+        } else if(this.prevDayVolume != p.getPrevDayVolume()) {
+            return false;
+        } else if(this.prevDayHigh != p.getPrevDayHigh()) {
+            return false;
+        } else if(this.prevDayLow != p.getPrevDayLow()) {
+            return false;
+        } 
+        return true; 
+    }
 }

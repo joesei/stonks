@@ -77,7 +77,8 @@ public class Stonk {
         //Decrease to Increase groups of EntryLists
         EntryGroups gr = new EntryGroups();
         gr.decreaseToIncrease(this.entrys);
-        gr.printPredicatez();
+        //gr.printPredicatez();
+        gr.printPredicatezCount();
         
     }
 }

@@ -80,4 +80,13 @@ public class Entry {
     public Percentz getPercentz() {
         return this.percentz;
     }
+    
+    /**
+     * Compares this entry with another one based on Predicatez values
+     * @param e the other Entry
+     * @return true if Predicatez values are the same else false
+     */
+    public boolean compareByPredicatez(Entry e) {
+        return this.predicatez.comparePredicatez(e.getPredicatez());
+    }
 }
