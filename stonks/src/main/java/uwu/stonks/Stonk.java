@@ -80,5 +80,9 @@ public class Stonk {
         //gr.printPredicatez();
         gr.printPredicatezCount();
         
+        PredicatezTable table = new PredicatezTable();
+        table.initByEntryGroups(gr);
+        table.printTable();
+        
     }
 }

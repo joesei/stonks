@@ -30,11 +30,15 @@ import java.util.ArrayList;
  * @author Jose Manuel Hernandez
  */
 public class EntryGroups {
-    String type;
+    int id;
     ArrayList<EntryList> entryLists = new ArrayList<>();
     
     public EntryGroups() {
         
+    }
+    
+    public int getID() {
+        return this.id;
     }
     
     public EntryList get(int index) {
@@ -57,7 +61,7 @@ public class EntryGroups {
     }
     
     public void printPredicatezCount() {
-        System.out.println(String.format("Type: %s", this.type));
+        System.out.println(String.format("Type: %s", this.id));
         for(int i = 0; i < this.entryLists.size(); i++) {
             System.out.println(String.format("PredicatezCount #%d", i + 1));
             this.entryLists.get(i).printPredicatezCount();
@@ -71,7 +75,7 @@ public class EntryGroups {
      * @param list the list of Entry(s)
      */
     public void decreaseToIncrease(EntryList list) {
-        this.type = "Decrease to increase SDG multiple";
+        this.id = 0;
         //Checking for the first false -- Is it still trying to find the first
         //false. Changed to false when the first SDG false value is found. Changed
         //back to true when a SDG true value is found.
@@ -106,7 +110,7 @@ public class EntryGroups {
      * @param list 
      */
     public void decreaseToIncreaseS(EntryList list) {
-        this.type = "Decrease to increase SDG single";
+        this.id = 1;
         EntryList temp = new EntryList();
         boolean falseFound = false;
         for(Entry e : list.getList()) {
