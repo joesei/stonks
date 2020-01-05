@@ -134,8 +134,33 @@ public class PredicatezTable {
     
     public void printChances() {
         System.out.println("Printing chances");
+        float sdg = 0;
+        float pdc = 0;
+        float pdo = 0;
+        float pdv = 0;
+        float pdh = 0;
+        float pdl = 0;
         for(int i = 0; i < this.predicatez.size(); i++) {
             boolean[] b = this.predicatez.get(i);
+            if(b[0]) {
+                sdg += this.True.get(i);
+            }
+            if(b[1]) {
+                pdc += this.True.get(i);
+            }
+            if(b[2]) {
+                pdo += this.True.get(i);
+            }
+            if(b[3]) {
+                pdv += this.True.get(i);
+            }
+            if(b[4]) {
+                pdh += this.True.get(i);
+            }
+            if(b[5]) {
+                pdl += this.True.get(i);
+            }
+            
             float tru = (float) this.True.get(i);
             float tot = (float) this.True.get(i) + (float) this.False.get(i);
             float p = (float) tru / tot;
@@ -145,6 +170,9 @@ public class PredicatezTable {
             
             System.out.println(s);
         }     
+        float t = (float) this.totalInt;
+        System.out.println(String.format("SDG: %s , PDC: %s, PDO: %s, PDV: %s, PDH: %s,"
+                + " PDL: %s", sdg/t , pdc/t, pdo/t, pdv/t, pdh/t, pdl/t));
         System.out.println(this.totalInt);
     }
     
