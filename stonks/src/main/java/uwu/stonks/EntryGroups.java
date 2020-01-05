@@ -32,6 +32,7 @@ import java.util.ArrayList;
 public class EntryGroups {
     int id;
     ArrayList<EntryList> entryLists = new ArrayList<>();
+    PredicatezTable table;
     
     public EntryGroups() {
         
@@ -47,6 +48,10 @@ public class EntryGroups {
     
     public ArrayList<EntryList> getLists() {
         return this.entryLists;
+    }
+    
+    public PredicatezTable getTable() {
+        return this.table;
     }
     
     public void printPredicatez() {
@@ -126,5 +131,8 @@ public class EntryGroups {
                 falseFound = true;
             }
         }
+        this.table = new PredicatezTable();
+        this.table.initByEntryGroups(this);
     }
+    
 }

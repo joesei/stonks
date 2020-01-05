@@ -80,9 +80,21 @@ public class Stonk {
         //gr.printPredicatez();
         gr.printPredicatezCount();
         
+        //Similar to python dict
+        //PredicatezTable table = new PredicatezTable();
+        //table.initByEntryGroups(gr);
+        //table.printTable();
+        //gr.getTable().findOpp(list);
+        //gr.getTable().printTable();
+        //System.out.println(gr.getTable().total);
         PredicatezTable table = new PredicatezTable();
-        table.initByEntryGroups(gr);
-        table.printTable();
+        table.initByEntryList(this.entrys);
+        table.printChances();
+        //TODO 
+        //Since info of table is from false to true, check what percentage is 
+        //of Predicatez in table that turn true next
         
     }
+    
+    
 }
